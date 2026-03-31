@@ -1,1 +1,12 @@
-
+! Configuration VLANs Switch Distribution 1
+! Root Bridge Principal — Priority 4096
+! A compléter lors du déploiement T2
+vlan 10
+ name IT
+vlan 20
+ name RH
+vlan 30
+ name COMPTABILITE
+vlan 40
+ name DIRECTION
+spanning-tree vlan 10,20,30,40 priority 4096
