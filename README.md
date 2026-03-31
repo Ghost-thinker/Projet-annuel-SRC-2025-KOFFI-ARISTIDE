@@ -1,5 +1,5 @@
 # Projet Annuel SRC 2025-2026
-# Déploiement et supervision d'une infrastructure réseau d'entreprise virtualisée
+# Déploiement et supervision d'une infrastructure réseau d'entreprise virtualisée avec automatisation et sécurisation
 
 Etudiant : KOFFI KOUADIO KAN ARISTIDE
 Ecole : ESGI Aix-en-Provence
