@@ -1,12 +1,32 @@
-! Configuration VLANs Switch Distribution 1
-! Root Bridge Principal — Priority 4096
-! A compléter lors du déploiement T2
+! enable
+configure terminal
+hostname SW-DIST-1
+
 vlan 10
- name IT
+name IT
+exit
 vlan 20
- name RH
+name RH
+exit
 vlan 30
- name COMPTABILITE
+name COMPTABILITE
+exit
 vlan 40
- name DIRECTION
-spanning-tree vlan 10,20,30,40 priority 4096
+name DIRECTION
+exit
+
+interface e0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+exit
+interface e0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+exit
+interface e0/2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan 10,20,30,40
+exit
