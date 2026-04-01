@@ -1,1 +1,23 @@
 
+interface f1/0.10
+standby 10 ip 192.168.10.254
+standby 10 priority 100
+standby 10 preempt
+exit
+interface f1/0.20
+standby 20 ip 192.168.20.254
+standby 20 priority 100
+standby 20 preempt
+exit
+interface f1/0.30
+standby 30 ip 192.168.30.254
+standby 30 priority 100
+standby 30 preempt
+exit
+interface f1/0.40
+standby 40 ip 192.168.40.254
+standby 40 priority 100
+standby 40 preempt
+exit
+
+
