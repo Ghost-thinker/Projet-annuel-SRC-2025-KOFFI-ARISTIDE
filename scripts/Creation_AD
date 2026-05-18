@@ -1,1 +1,25 @@
 
+# ============================================================
+# 01_install_ad.ps1
+# Projet Annuel SRC — KOFFI KOUADIO KAN ARISTIDE
+# Etape 1 : Installation du role AD DS et promotion en DC
+# Domaine : katech.local
+# ============================================================
+
+# Installation du role AD DS
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+
+# Promotion en controleur de domaine
+Import-Module ADDSDeployment
+
+Install-ADDSForest `
+    -DomainName "katech.local" `
+    -DomainNetbiosName "KATECH" `
+    -ForestMode "WinThreshold" `
+    -DomainMode "WinThreshold" `
+    -InstallDns:$true `
+    -DatabasePath "C:\Windows\NTDS" `
+    -LogPath "C:\Windows\NTDS" `
+    -SysvolPath "C:\Windows\SYSVOL" `
+    -NoRebootOnCompletion:$false `
+    -Force:$true
