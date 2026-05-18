@@ -1,1 +1,11 @@
+# ============================================================
+# 02_create_ou.ps1
+# Etape 2 : Creation des OUs
+# ============================================================
 
+New-ADOrganizationalUnit -Name "IT" -Path "DC=katech,DC=local"
+New-ADOrganizationalUnit -Name "RH" -Path "DC=katech,DC=local"
+New-ADOrganizationalUnit -Name "Comptabilite" -Path "DC=katech,DC=local"
+New-ADOrganizationalUnit -Name "Direction" -Path "DC=katech,DC=local"
+
+Write-Host "OUs creees avec succes" -ForegroundColor Green
