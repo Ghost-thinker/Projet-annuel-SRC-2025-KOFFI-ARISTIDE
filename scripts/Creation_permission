@@ -1,1 +1,45 @@
+# ============================================================
+# 05_set_permissions.ps1
+# Etape 5 : Droits NTFS par departement
+# Responsable = Full Control
+# CDI = Modify (Read/Write)
+# Stagiaire = Read Only
+# ============================================================
 
+# ── RH ──────────────────────────────────────────────────────
+$acl = Get-Acl "C:\Partages\RH"
+
+$rule1 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\sophie.martin","FullControl","ContainerInherit,ObjectInherit","None","Allow")
+$rule2 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\thomas.bernard","Modify","ContainerInherit,ObjectInherit","None","Allow")
+$rule3 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\lea.dubois","ReadAndExecute","ContainerInherit,ObjectInherit","None","Allow")
+
+$acl.AddAccessRule($rule1)
+$acl.AddAccessRule($rule2)
+$acl.AddAccessRule($rule3)
+Set-Acl "C:\Partages\RH" $acl
+
+# ── Comptabilite ─────────────────────────────────────────────
+$acl = Get-Acl "C:\Partages\Comptabilite"
+
+$rule1 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\marc.lefevre","FullControl","ContainerInherit,ObjectInherit","None","Allow")
+$rule2 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\camille.rousseau","Modify","ContainerInherit,ObjectInherit","None","Allow")
+$rule3 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\enzo.petit","ReadAndExecute","ContainerInherit,ObjectInherit","None","Allow")
+
+$acl.AddAccessRule($rule1)
+$acl.AddAccessRule($rule2)
+$acl.AddAccessRule($rule3)
+Set-Acl "C:\Partages\Comptabilite" $acl
+
+# ── Direction ────────────────────────────────────────────────
+$acl = Get-Acl "C:\Partages\Direction"
+
+$rule1 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\patrick.moreau","FullControl","ContainerInherit,ObjectInherit","None","Allow")
+$rule2 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\julie.lambert","Modify","ContainerInherit,ObjectInherit","None","Allow")
+$rule3 = New-Object System.Security.AccessControl.FileSystemAccessRule("KATECH\yasmine.diallo","ReadAndExecute","ContainerInherit,ObjectInherit","None","Allow")
+
+$acl.AddAccessRule($rule1)
+$acl.AddAccessRule($rule2)
+$acl.AddAccessRule($rule3)
+Set-Acl "C:\Partages\Direction" $acl
+
+Write-Host "Droits NTFS appliques avec succes" -ForegroundColor Green
