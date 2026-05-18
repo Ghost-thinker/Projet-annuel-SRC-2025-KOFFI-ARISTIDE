@@ -1,1 +1,24 @@
+# ============================================================
+# 06_create_gpo.ps1
+# Etape 6 : Creation et liaison des GPO par departement
+# ============================================================
 
+Import-Module GroupPolicy
+
+# ── GPO RH ───────────────────────────────────────────────────
+New-GPO -Name "GPO_RH"
+New-GPLink -Name "GPO_RH" -Target "OU=RH,DC=katech,DC=local"
+
+# ── GPO Comptabilite ─────────────────────────────────────────
+New-GPO -Name "GPO_Comptabilite"
+New-GPLink -Name "GPO_Comptabilite" -Target "OU=Comptabilite,DC=katech,DC=local"
+
+# ── GPO Direction ────────────────────────────────────────────
+New-GPO -Name "GPO_Direction"
+New-GPLink -Name "GPO_Direction" -Target "OU=Direction,DC=katech,DC=local"
+
+# ── GPO IT ───────────────────────────────────────────────────
+New-GPO -Name "GPO_IT"
+New-GPLink -Name "GPO_IT" -Target "OU=IT,DC=katech,DC=local"
+
+Write-Host "GPO creees et liees avec succes" -ForegroundColor Green
