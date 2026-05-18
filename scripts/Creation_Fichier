@@ -1,1 +1,21 @@
+# ============================================================
+# 04_create_folders.ps1
+# Etape 4 : Creation des dossiers partages par departement
+# ============================================================
 
+# Creation du dossier racine
+New-Item -Path "C:\Partages" -ItemType Directory -Force
+
+# Creation des dossiers par departement
+New-Item -Path "C:\Partages\RH" -ItemType Directory -Force
+New-Item -Path "C:\Partages\Comptabilite" -ItemType Directory -Force
+New-Item -Path "C:\Partages\Direction" -ItemType Directory -Force
+New-Item -Path "C:\Partages\IT" -ItemType Directory -Force
+
+# Partage reseau des dossiers
+New-SmbShare -Name "RH" -Path "C:\Partages\RH" -FullAccess "KATECH\Administrateur"
+New-SmbShare -Name "Comptabilite" -Path "C:\Partages\Comptabilite" -FullAccess "KATECH\Administrateur"
+New-SmbShare -Name "Direction" -Path "C:\Partages\Direction" -FullAccess "KATECH\Administrateur"
+New-SmbShare -Name "IT" -Path "C:\Partages\IT" -FullAccess "KATECH\Administrateur"
+
+Write-Host "Dossiers partages crees avec succes" -ForegroundColor Green
