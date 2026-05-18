@@ -1,1 +1,23 @@
+# ============================================================
+# 03_create_users.ps1
+# Etape 3 : Creation des utilisateurs par OU
+# ============================================================
 
+$password = ConvertTo-SecureString "Katech2025!" -AsPlainText -Force
+
+# OU RH
+New-ADUser -Name "Sophie Martin" -SamAccountName "sophie.martin" -UserPrincipalName "sophie.martin@katech.local" -Path "OU=RH,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "Responsable RH"
+New-ADUser -Name "Thomas Bernard" -SamAccountName "thomas.bernard" -UserPrincipalName "thomas.bernard@katech.local" -Path "OU=RH,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "CDI RH"
+New-ADUser -Name "Lea Dubois" -SamAccountName "lea.dubois" -UserPrincipalName "lea.dubois@katech.local" -Path "OU=RH,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "Stagiaire RH"
+
+# OU Comptabilite
+New-ADUser -Name "Marc Lefevre" -SamAccountName "marc.lefevre" -UserPrincipalName "marc.lefevre@katech.local" -Path "OU=Comptabilite,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "Responsable Comptabilite"
+New-ADUser -Name "Camille Rousseau" -SamAccountName "camille.rousseau" -UserPrincipalName "camille.rousseau@katech.local" -Path "OU=Comptabilite,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "CDI Comptabilite"
+New-ADUser -Name "Enzo Petit" -SamAccountName "enzo.petit" -UserPrincipalName "enzo.petit@katech.local" -Path "OU=Comptabilite,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "Stagiaire Comptabilite"
+
+# OU Direction
+New-ADUser -Name "Patrick Moreau" -SamAccountName "patrick.moreau" -UserPrincipalName "patrick.moreau@katech.local" -Path "OU=Direction,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "Directeur General"
+New-ADUser -Name "Julie Lambert" -SamAccountName "julie.lambert" -UserPrincipalName "julie.lambert@katech.local" -Path "OU=Direction,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "CDI Direction"
+New-ADUser -Name "Yasmine Diallo" -SamAccountName "yasmine.diallo" -UserPrincipalName "yasmine.diallo@katech.local" -Path "OU=Direction,DC=katech,DC=local" -AccountPassword $password -Enabled $true -Title "Stagiaire Direction"
+
+Write-Host "Utilisateurs crees avec succes" -ForegroundColor Green
