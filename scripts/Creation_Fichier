@@ -1,21 +1,61 @@
 # ============================================================
-# 04_create_folders.ps1
-# Etape 4 : Creation des dossiers partages par departement
+# Creation_Fichier.ps1
+# Projet Annuel SRC — KOFFI KOUADIO KAN ARISTIDE
+# Creation de fichiers realistes dans les dossiers partages
+# Simule des fichiers crees par les utilisateurs
 # ============================================================
 
-# Creation du dossier racine
-New-Item -Path "C:\Partages" -ItemType Directory -Force
+Write-Host ""
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host "  KATECH.LOCAL - Creation des fichiers" -ForegroundColor Cyan
+Write-Host "============================================" -ForegroundColor Cyan
 
-# Creation des dossiers par departement
-New-Item -Path "C:\Partages\RH" -ItemType Directory -Force
-New-Item -Path "C:\Partages\Comptabilite" -ItemType Directory -Force
-New-Item -Path "C:\Partages\Direction" -ItemType Directory -Force
-New-Item -Path "C:\Partages\IT" -ItemType Directory -Force
+$Fichiers = @{
+    "C:\Partages\RH" = @(
+        "Contrats_Employes_2026.docx",
+        "Fiche_Paie_Juillet2026.xlsx",
+        "Planning_Conges_Ete2026.xlsx",
+        "Reglement_Interieur.pdf",
+        "Onboarding_NouveauxArrivants.docx"
+    )
+    "C:\Partages\Comptabilite" = @(
+        "Bilan_Comptable_2026.xlsx",
+        "Factures_Fournisseurs_Juillet2026.pdf",
+        "Budget_Previsionnel_2026.xlsx",
+        "Rapport_Tresorerie_Q2.xlsx",
+        "Notes_de_Frais.xlsx"
+    )
+    "C:\Partages\Direction" = @(
+        "Rapport_Annuel_2026.docx",
+        "Strategie_Entreprise_2027.pptx",
+        "CR_Reunion_Direction_Juillet2026.docx",
+        "Plan_Expansion_CoteDIvoire.docx",
+        "Objectifs_Q3_2026.xlsx"
+    )
+    "C:\Partages\IT" = @(
+        "Procedures_Reseau_GNS3.docx",
+        "Inventaire_Materiel_Informatique.xlsx",
+        "Plan_Infrastructure_Katech.vsdx",
+        "Guide_Installation_Zabbix.docx",
+        "Politique_Securite_DSI.pdf"
+    )
+}
 
-# Partage reseau des dossiers
-New-SmbShare -Name "RH" -Path "C:\Partages\RH" -FullAccess "KATECH\Administrateur"
-New-SmbShare -Name "Comptabilite" -Path "C:\Partages\Comptabilite" -FullAccess "KATECH\Administrateur"
-New-SmbShare -Name "Direction" -Path "C:\Partages\Direction" -FullAccess "KATECH\Administrateur"
-New-SmbShare -Name "IT" -Path "C:\Partages\IT" -FullAccess "KATECH\Administrateur"
+foreach ($Dossier in $Fichiers.Keys) {
+    Write-Host ""
+    Write-Host "  [ $Dossier ]" -ForegroundColor Yellow
+    foreach ($Fichier in $Fichiers[$Dossier]) {
+        $Chemin = "$Dossier\$Fichier"
+        if (-not (Test-Path $Chemin)) {
+            New-Item -Path $Chemin -ItemType File -Force | Out-Null
+            Write-Host "  [+] $Fichier cree" -ForegroundColor Green
+        } else {
+            Write-Host "  [=] $Fichier deja existant" -ForegroundColor Gray
+        }
+    }
+}
 
-Write-Host "Dossiers partages crees avec succes" -ForegroundColor Green
+Write-Host ""
+Write-Host "============================================" -ForegroundColor Cyan
+Write-Host "  FICHIERS CREES AVEC SUCCES" -ForegroundColor Cyan
+Write-Host "============================================" -ForegroundColor Cyan
